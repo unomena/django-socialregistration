@@ -137,7 +137,7 @@ def facebook_connect(request, template='socialregistration/facebook.html',
         profile = FacebookProfile.objects.get(uid=request.facebook.uid)
     except FacebookProfile.DoesNotExist:
         profile = FacebookProfile.objects.create(user=request.user,
-            uid=request.facebook.uid)
+            uid=request.facebook.uid, oauth_access_token=request.facebook.user['access_token'])
 
     return HttpResponseRedirect(_get_next(request))
 
