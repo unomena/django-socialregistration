@@ -8,6 +8,7 @@ class FacebookProfile(models.Model):
     user = models.ForeignKey(User)
     site = models.ForeignKey(Site, default=Site.objects.get_current)
     uid = models.CharField(max_length=255, blank=False, null=False)
+    oauth_access_token = models.CharField(max_length=255, blank=False, null=False)
     
     def __unicode__(self):
         return u'%s: %s' % (self.user, self.uid)
