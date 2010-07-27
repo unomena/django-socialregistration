@@ -11,12 +11,15 @@ class Auth(object):
             return None
 
 class FacebookAuth(Auth):
-    def authenticate(self, uid=None):
+    def authenticate(self, uid=None, oauth_access_token=None):
         try:
-            return FacebookProfile.objects.get(
+            profile = FacebookProfile.objects.get(
                 uid=uid,
                 site=Site.objects.get_current()
-            ).user
+            )
+            profile.oauth_access_token = oauth_access_token
+            profile.save()
+            return profile.user
         except FacebookProfile.DoesNotExist:
             return None
 

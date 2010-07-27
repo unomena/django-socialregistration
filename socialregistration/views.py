@@ -107,11 +107,11 @@ def facebook_login(request, template='socialregistration/facebook.html',
         return render_to_response(template, extra_context,
             context_instance=RequestContext(request))
 
-    user = authenticate(uid=request.facebook.uid)
+    user = authenticate(uid=request.facebook.uid, oauth_access_token=request.facebook.user['access_token'])
 
     if user is None:
         request.session['socialregistration_user'] = User()
-        request.session['socialregistration_profile'] = FacebookProfile(uid=request.facebook.uid)
+        request.session['socialregistration_profile'] = FacebookProfile(uid=request.facebook.uid, oauth_access_token=request.facebook.user['access_token'])
         request.session['next'] = _get_next(request)
         return HttpResponseRedirect(reverse('socialregistration_setup'))
 
