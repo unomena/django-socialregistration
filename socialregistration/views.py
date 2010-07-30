@@ -63,7 +63,11 @@ def setup(request, template='socialregistration/setup.html',
             
             if form.is_valid():
                 form.save(request=request)
-                user = form.profile.authenticate()
+                profile = form.profile
+                if profile.__class__ == FacebookProfile:
+                    user = profile.authenticate(oauth_access_token=request.facebook.user['access_token'])
+                else: 
+                    user = profile.authenticate()
                 login(request, user)
 
                 del request.session['socialregistration_user']

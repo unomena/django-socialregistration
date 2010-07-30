@@ -13,8 +13,8 @@ class FacebookProfile(models.Model):
     def __unicode__(self):
         return u'%s: %s' % (self.user, self.uid)
     
-    def authenticate(self):
-        return authenticate(uid=self.uid)
+    def authenticate(self, oauth_access_token):
+        return authenticate(uid=self.uid, oauth_access_token=oauth_access_token)
 
 class TwitterProfile(models.Model):
     user = models.ForeignKey(User)
