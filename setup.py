@@ -11,7 +11,7 @@ METADATA = dict(
     keywords='django facebook twitter oauth openid registration',
 )
 SETUPTOOLS_METADATA = dict(
-    install_requires=['setuptools', 'django', 'oauth2', 'python-openid'],
+    install_requires=['setuptools', 'django', 'oauth2', 'python-openid', 'facebook-python-sdk',],
     include_package_data=True,
     classifiers=[
         'Development Status :: 4 - Beta',
