@@ -11,6 +11,9 @@ METADATA = dict(
     keywords='django facebook twitter oauth openid registration',
 )
 SETUPTOOLS_METADATA = dict(
+    dependency_links = [
+        'http://github.com/facebook/python-sdk/tarball/master#egg=facebook-python-sdk',
+    ],
     install_requires=['setuptools', 'django', 'oauth2', 'python-openid', 'facebook-python-sdk',],
     include_package_data=True,
     classifiers=[
