@@ -89,7 +89,7 @@ def setup(request, template='socialregistration/setup.html',
         social_profile.save()
 
         # Authenticate and login
-        user = social_profile.authenticate()
+        user = social_profile.authenticate(oauth_access_token=request.facebook.user['access_token'])
         login(request, user)
 
         # Clear & Redirect
